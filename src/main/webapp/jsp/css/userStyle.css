@@ -1,0 +1,95 @@
+#user-data {
+	background-color: rgba(255,255,255,.5);
+	padding: 20px;
+	border-radius: 10px;
+}
+
+form input {
+	display: block;
+	height: 40px;
+}
+
+form .field {
+	border:  1px solid black;
+	font-style: italic;
+	border-radius: 5px;
+	color: #5B6B63;
+	width: 80%;
+	margin: 5px;
+}
+
+form button.button {
+	height: 40px;
+	background-color: rgba(0,0,0,0);
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 0 20px;
+}
+
+form button:hover {
+	background-color: rgba(0,0,0,.1);
+}
+
+
+.flights-list li {
+	list-style-type: none;
+	background-color: rgba(255,255,255,.9);
+	margin-right: 30px;
+	margin-top: 20px;
+	padding: 20px;
+}
+
+.airlines-list li {
+	list-style-type: none;
+	background-color: rgba(255,255,255,.9);
+	box-shadow: 3px 3px 5px black, -3px 3px 5px black;
+	margin-left: -30px;
+	margin-top: 20px;
+	padding: 20px;
+}
+
+.flights-list span {
+	color: #C7CCC9;
+	margin: 10px 0 0 50px;
+}
+
+#content {
+	background-color: rgba(5, 81, 53, .8);
+	margin: 20px 0;
+	padding: 20px;
+}
+
+#content a {
+	color: #C7CCC9;
+	display: block;
+	text-decoration: underline;
+	margin: 5px 0 0 30px;
+}
+
+#pilot-content {
+	height: 250px;
+	margin: 50px;
+	padding: 50px;
+	background-color: rgba(255, 255, 255, .5);
+}
+
+#pilot-content a {
+	display: block;
+	text-decoration: underline;
+}
+
+.tabs a {
+	color: black !important;
+}
+
+.tabs {
+	margin: 30px 0 50px 0;
+}
+
+.flights-list li {
+	list-style-type: none;
+	background-color: rgba(255,255,255,.9);
+	box-shadow: 3px 0 5px black, -3px 0 5px black;
+	margin-left: 5px 10px;
+	padding: 20px;
+}

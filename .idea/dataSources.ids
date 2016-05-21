@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - airport@localhost" uuid="1b9e5e81-b7da-45a8-b5cb-1d1c580a6fe7">
+    <database-info product="MySQL" version="5.6.23" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.4">
+      <schema id="1" name="airport"/>
+      <table id="2" parent="1" name="airline"/>
+      <table id="3" parent="1" name="client"/>
+      <table id="4" parent="1" name="flight"/>
+      <table id="5" parent="1" name="pilot"/>
+      <table id="6" parent="1" name="plane"/>
+      <table id="7" parent="1" name="seat"/>
+      <table id="8" parent="1" name="ticket"/>
+      <table id="9" parent="1" name="administrator"/>
+      <table id="10" parent="1" name="user_credential"/>
+      <column id="11" parent="2" name="id_airline">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="12" parent="2" name="name">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="13" parent="2" name="credentials">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="14" parent="2" name="credentials">
+        <columns>credentials</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="15" parent="2" name="PRIMARY">
+        <columns>id_airline</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="16" parent="2" name="fk_airline_user_credentials">
+        <columns>credentials</columns>
+        <ref-key>~.user_credential.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="17" parent="3" name="id_client">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="18" parent="3" name="last_name">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="19" parent="3" name="first_name">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="20" parent="3" name="patronymic">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="21" parent="3" name="passport">
+        <data-type>varchar(9)</data-type>
+      </column>
+      <column id="22" parent="3" name="email">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="23" parent="3" name="credentials">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="24" parent="3" name="fk_client_user_credentials_ix">
+        <columns>credentials</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="25" parent="3" name="PRIMARY">
+        <columns>id_client</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="26" parent="3" name="fk_client_user_credentials">
+        <columns>credentials</columns>
+        <ref-key>~.user_credential.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="27" parent="4" name="id_flight">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="28" parent="4" name="departure_time">
+        <data-type>time</data-type>
+      </column>
+      <column id="29" parent="4" name="departure_date">
+        <data-type>date</data-type>
+      </column>
+      <column id="30" parent="4" name="destination">
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="31" parent="4" name="flight_number">
+        <data-type>varchar(10)</data-type>
+      </column>
+      <column id="32" parent="4" name="arrival_time">
+        <data-type>time</data-type>
+      </column>
+      <column id="33" parent="4" name="arrival_date">
+        <data-type>date</data-type>
+      </column>
+      <column id="34" parent="4" name="id_plane">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="35" parent="4" name="id_pilot">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="36" parent="4" name="seats_count">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="37" parent="4" name="id_airline">
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="38" parent="4" name="fk_flight_pilot1_idx">
+        <columns>id_pilot</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="39" parent="4" name="fk_flight_plane_idx">
+        <columns>id_plane</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="40" parent="4" name="PRIMARY">
+        <columns>id_flight</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="41" parent="4" name="fk_flight_pilot1">
+        <columns>id_pilot</columns>
+        <ref-key>~.pilot.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="42" parent="4" name="fk_flight_plane">
+        <columns>id_plane</columns>
+        <ref-key>~.plane.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="43" parent="5" name="id_pilot">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="44" parent="5" name="last_name">
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="45" parent="5" name="first_name">
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="46" parent="5" name="patronymic">
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="47" parent="5" name="experience">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="48" parent="5" name="iin">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="49" parent="5" name="id_airline">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="50" parent="5" name="credentials">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="51" parent="5" name="fk_pilot_airline_idx">
+        <columns>id_airline</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="52" parent="5" name="fk_pilot_user_credentials_idx">
+        <columns>credentials</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="53" parent="5" name="PRIMARY">
+        <columns>id_pilot</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="54" parent="5" name="fk_pilot_airline">
+        <columns>id_airline</columns>
+        <ref-key>~.airline.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="55" parent="5" name="fk_pilot_user_credentials">
+        <columns>credentials</columns>
+        <ref-key>~.user_credential.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="56" parent="6" name="id_plane">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="57" parent="6" name="private_number">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="58" parent="6" name="model">
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="59" parent="6" name="seat_count">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="60" parent="6" name="id_airline">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="61" parent="6" name="fk_plane_airline1_idx">
+        <columns>id_airline</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="62" parent="6" name="PRIMARY">
+        <columns>id_plane</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="63" parent="6" name="fk_plane_airline1">
+        <columns>id_airline</columns>
+        <ref-key>~.airline.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="64" parent="7" name="id_seat">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="65" parent="7" name="place">
+        <data-type>varchar(5)</data-type>
+      </column>
+      <column id="66" parent="7" name="free">
+        <data-type>tinyint(1)</data-type>
+      </column>
+      <column id="67" parent="7" name="id_flight">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="68" parent="7" name="id_flight_idx">
+        <columns>id_flight</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="69" parent="7" name="PRIMARY">
+        <columns>id_seat</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="70" parent="7" name="id_flight">
+        <columns>id_flight</columns>
+        <ref-key>~.flight.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="71" parent="8" name="id_ticket">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="72" parent="8" name="price">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="73" parent="8" name="id_seat">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="74" parent="8" name="id_client">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="75" parent="8" name="id_flight">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="76" parent="8" name="fk_ticket_client1_idx">
+        <columns>id_client</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="77" parent="8" name="fk_ticket_flight1_idx">
+        <columns>id_flight</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="78" parent="8" name="fk_ticket_seat1_idx">
+        <columns>id_seat</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="79" parent="8" name="PRIMARY">
+        <columns>id_ticket</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="80" parent="8" name="fk_ticket_client">
+        <columns>id_client</columns>
+        <ref-key>~.client.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="81" parent="8" name="fk_ticket_flight">
+        <columns>id_flight</columns>
+        <ref-key>~.flight.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="82" parent="8" name="fk_ticket_seat">
+        <columns>id_seat</columns>
+        <ref-key>~.seat.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="83" parent="9" name="id_admin">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="84" parent="9" name="credentials">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="85" parent="9" name="name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <index id="86" parent="9" name="fk_admin_user_credentials_idx">
+        <columns>credentials</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="87" parent="9" name="PRIMARY">
+        <columns>id_admin</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="88" parent="9" name="fk_admin_user_credentials">
+        <columns>credentials</columns>
+        <ref-key>~.user_credential.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="89" parent="10" name="id_user">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="90" parent="10" name="login">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="91" parent="10" name="password">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <index id="92" parent="10" name="IX_login">
+        <columns>login</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="93" parent="10" name="IX_login">
+        <columns>login</columns>
+        <underlying-index>IX_login</underlying-index>
+      </key>
+      <key id="94" parent="10" name="PRIMARY">
+        <columns>id_user</columns>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+</component>

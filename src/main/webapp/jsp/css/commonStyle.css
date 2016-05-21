@@ -1,0 +1,50 @@
+
+@font-face {
+	font-family: allodsWest;
+	src: url(fonts/Allods_West.ttf);
+}
+
+@font-face {
+	font-family: aalbionicttlrgbt;
+	src: url(fonts/aalbionicttlrgbt.ttf);
+}
+
+body,html {
+	background-image: url('1.png');
+	font-family: allodsWest;
+}
+
+#header {
+	background-color: #055135;
+	font-family: aalbionicttlrgbt;
+	border-bottom: 1px solid #055135;
+}
+
+	#header img {
+		max-width: 100%; 
+	}
+
+	#header a {
+		color: #A2B4AD;
+	}
+
+#footer {	
+	background-color: #055135;
+	color: #A2B4AD;
+	margin-top: 20px;
+	text-align: center;
+	padding: 50px 0;
+}
+
+.navbar-nav li{
+	display: inline-block;
+	margin-top: 10px;
+}
+
+.navbar-nav li button, .navbar-nav li a {
+	background-color: rgba(0,0,0,0) !important;
+	border-radius: 5px !important;
+	border: 1px solid black;
+	color: black;
+	padding: 0 5px;
+}

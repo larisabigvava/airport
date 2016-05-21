@@ -1,0 +1,43 @@
+form input {
+	display: block;
+	height: 40px;
+}
+
+form .field {
+	border:  1px solid black;
+	font-style: italic;
+	border-radius: 5px;
+	color: #5B6B63;
+	width: 80%;
+	margin: 5px;
+}
+
+form button.button {
+	height: 40px;
+	background-color: rgba(0,0,0,0);
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 0 20px;
+}
+
+	form button:hover {
+		background-color: rgba(0,0,0,.1);
+	}
+
+#content {
+	background-color: rgba(5, 81, 53, .8);
+	margin: 50px 0;
+	padding: 20px;
+}
+
+#user-data {
+	background-color: rgba(255,255,255,.5);
+	padding: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-radius: 10px;
+}
+
+#user-data span{
+	color: rgb(5, 81, 53);
+}

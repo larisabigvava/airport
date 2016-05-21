@@ -1,0 +1,38 @@
+#content {
+	background-color: rgba(5, 81, 53, .8);
+	margin-top: 50px;
+	padding: 50px;
+}
+
+	#content input {
+		display: block;
+		height: 50px;
+	}
+
+	#content input.field {
+		font-style: italic;
+		border-radius: 5px;
+		width: 100%;
+		margin: 5px;
+	}
+
+	#content button {
+		margin: 5px;
+		padding: 5px 30px;
+		background-color: #4EA675;
+	}
+
+.links {
+	margin-top: 20px;
+}
+
+	#content a {
+		color: #4EA675;
+		display: inline-block;
+		margin: 5px;
+		text-decoration: underline;
+	}
+
+		#content a:hover {
+			color: #A5D5BA;
+		}

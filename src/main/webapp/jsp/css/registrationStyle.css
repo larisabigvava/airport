@@ -1,0 +1,33 @@
+#content {
+	background-color: rgba(5, 81, 53, .8);
+	margin-top: 50px;
+	padding: 50px;
+	color: #C7CCC9;
+}
+
+#content input {
+		display: block;
+		height: 40px;
+	}
+
+	#content input.field {
+		font-style: italic;
+		border-radius: 5px;
+		color: #5B6B63;
+		width: 60%;
+		margin: 5px;
+	}
+
+	#content button {
+		margin: 5px;
+		padding: 5px 10px;
+		background-color: #4EA675;
+	}
+
+@media screen and (max-width: 500px) {
+	
+	#content input.field {
+		width: 100%;
+	}
+
+}
