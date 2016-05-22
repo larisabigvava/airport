@@ -88,7 +88,7 @@ public class MySqlFlightDao implements FlightDao {
         ){
             statement.setDate(1, departureDate);
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 flights.add(fillFlight(resultSet));
             }
         } catch (SQLException|NamingException e) {

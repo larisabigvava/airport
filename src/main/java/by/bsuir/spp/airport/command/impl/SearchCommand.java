@@ -9,6 +9,7 @@ import by.bsuir.spp.airport.service.ServiceException;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 /**
  * Created by Seagull on 21.05.2016.
@@ -25,7 +26,11 @@ public class SearchCommand implements BaseCommand {
                     break;
                 }
                 case "date":{
-                    flights = service.findByDepartureDate(Date.valueOf(request.getParameter("search_field")));
+                    try {
+                        flights = service.findByDepartureDate(Date.valueOf(request.getParameter("search_field")));
+                    } catch (IllegalArgumentException e){
+
+                    }
                     break;
                 }
             }
@@ -35,4 +40,5 @@ public class SearchCommand implements BaseCommand {
         }
         return "flights.jsp";
     }
+
 }

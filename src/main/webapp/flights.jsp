@@ -15,7 +15,6 @@
         <img src="jsp/img/plane.jpg" alt="plane">
     </header>
     <nav role="navigation" class="navbar navbar-default">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                 <span class="sr-only">Навигация</span>
@@ -24,7 +23,6 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <!-- Collection of nav links, forms, and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <form action="menu.do">
