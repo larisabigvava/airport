@@ -118,6 +118,51 @@ public class Controller extends HttpServlet{
                 }
                 break;
             }
+            case "log_off":{
+                LogOffCommand command = new LogOffCommand();
+                try {
+                    req.getRequestDispatcher(command.execute(req)).forward(req,resp);
+                }catch (CommandException e){
+                    e.printStackTrace();
+                }
+                break;
+            }
+            case "edit_pilot":{
+                EditPilotCommand command = new EditPilotCommand();
+                try {
+                    req.getRequestDispatcher(command.execute(req)).forward(req,resp);
+                }catch (CommandException e){
+                    e.printStackTrace();
+                }
+                break;
+            }
+            case "delete_pilot":{
+                DeletePilotCommand command = new DeletePilotCommand();
+                try {
+                    req.getRequestDispatcher(command.execute(req)).forward(req,resp);
+                }catch (CommandException e){
+                    e.printStackTrace();
+                }
+                break;
+            }
+            case "edit_flight":{
+                EditFlightCommand command = new EditFlightCommand();
+                try {
+                    req.getRequestDispatcher(command.execute(req)).forward(req,resp);
+                }catch (CommandException e){
+                    e.printStackTrace();
+                }
+                break;
+            }
+            case "delete_flight":{
+                DeleteFlightCommand command = new DeleteFlightCommand();
+                try {
+                    req.getRequestDispatcher(command.execute(req)).forward(req,resp);
+                }catch (CommandException e){
+                    e.printStackTrace();
+                }
+                break;
+            }
         }
     }
 }

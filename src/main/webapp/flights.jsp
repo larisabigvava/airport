@@ -32,6 +32,8 @@
                     </li>
                     <li><a href="registration.jsp">Регистрация</a></li>
                     <li><button name="btn" value="show_flights" type="submit">Рейсы</button>
+                    <c:if test="${not empty sessionScope.role}"></li>
+                    <li><button name="btn" value="log_off" type="submit">Выйти</button></c:if>
                 </form>
             </ul>
         </div>
@@ -70,7 +72,7 @@
                         Время и дата отправления: ${elem.departureTime},  ${elem.departureDate}<br>
                         Время и дата прибытия: ${elem.arrivalTime}, ${elem.arrivalDate}<br>
                         Номер самолета: ${elem.plane.privateNumber}<br>
-                        <c:if test="${not empty sessionScope.role}">
+                        <c:if test="${sessionScope.role == 'client'}">
                             <button name="btn" value="reserve" type="submit">Заказать билет</button>
                         </c:if>
                     </form>

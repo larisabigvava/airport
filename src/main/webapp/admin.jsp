@@ -29,7 +29,9 @@
                 <li class="active"><a href="index.jsp">Главная</a>
                 </li>
                 <li><a href="registration.jsp">Регистрация</a></li>
-                <li><button name="btn" value="show_flights" type="submit">Рейсы</button>
+                <li><button name="btn" value="show_flights" type="submit">Рейсы</button></li>
+                    <c:if test="${not empty sessionScope.role}">
+                <li><button name="btn" value="log_off" type="submit">Выйти</button></c:if>
             </form>
         </ul>
     </div>

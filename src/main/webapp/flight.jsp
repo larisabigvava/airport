@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="ru">
 <head>
@@ -30,6 +31,8 @@
                     </li>
                     <li><a href="registration.jsp">Регистрация</a></li>
                     <li><button name="btn" value="show_flights" type="submit">Рейсы</button>
+                        <c:if test="${not empty sessionScope.role}"></li>
+                    <li><button name="btn" value="log_off" type="submit">Выйти</button></c:if>
                 </form>
             </ul>
         </div>

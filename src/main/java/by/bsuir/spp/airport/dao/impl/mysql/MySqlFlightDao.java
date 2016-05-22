@@ -97,6 +97,7 @@ public class MySqlFlightDao implements FlightDao {
         return  flights;
     }
 
+
     @Override
     public Collection<Flight> findAll() throws DaoException {
         ArrayList<Flight> flights = new ArrayList<>();
