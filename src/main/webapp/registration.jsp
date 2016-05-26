@@ -37,6 +37,7 @@
     </nav>
     <div class="row">
         <div class="col-sm-6 col-xs-10 col-sm-offset-3 col-xs-offset-1" id="content">
+            <c:if test="${empty sessionScope.role}">
             Заполните поля для регистрации:
             <form name="registration_form" action="registration.do" method="post">
                 <input class="field" type="text" name="login" placeholder="Логин" required/>
@@ -49,6 +50,10 @@
                 <input class="field" type="text" name="passport" placeholder="Номер паспорта" required/>
                 <button class="btn-default button" type="submit" name="btn" value="registration">Зарегистрироваться</button>
             </form>
+            </c:if>
+            <c:if test="${not empty sessionScope.role}">
+                <nav>Пожалуйста, разлогиньтесь, чтобы зарегистрироваться</nav>
+            </c:if>
         </div>
     </div>
     <footer id="footer" class="row">
