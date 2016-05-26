@@ -62,4 +62,37 @@ public class PilotService extends BaseService {
         }
         return result;
     }
+
+    public boolean delete(Integer id) throws ServiceException {
+        boolean result = false;
+        try {
+                if (dao.deleteById(id)!=null) {
+                    result = true;
+                }
+        } catch (DaoException e){
+            throw new ServiceException(e);
+        }
+        return result;
+    }
+    public Pilot findById(Integer id) throws ServiceException{
+        Pilot pilot = null;
+        try {
+            pilot = dao.findById(id);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return pilot;
+    }
+
+    public boolean update(Pilot pilot) throws ServiceException{
+        boolean result = false;
+        try{
+            if (dao.update(pilot)!=null){
+                result = true;
+            }
+        } catch (DaoException e){
+            throw new ServiceException(e);
+        }
+        return result;
+    }
 }

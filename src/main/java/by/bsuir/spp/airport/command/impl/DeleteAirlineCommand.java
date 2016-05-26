@@ -25,7 +25,7 @@ public class DeleteAirlineCommand implements BaseCommand {
             ArrayList<Airline> airlines = service.findAll();
             request.setAttribute("airlines",airlines);
         }catch (ServiceException e) {
-            e.printStackTrace();
+            throw new CommandException(e);
         }
         return "admin.jsp";
     }

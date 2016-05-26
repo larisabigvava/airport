@@ -76,4 +76,26 @@ public class FlightService extends BaseService {
         }
         return false;
     }
+
+    public Flight findById(Integer id) throws ServiceException{
+        Flight flight = null;
+        try {
+            flight = dao.findById(id);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return flight;
+    }
+
+    public boolean update(Flight flight) throws ServiceException{
+        boolean result = false;
+        try {
+            if (dao.update(flight)!=null){
+                result = true;
+            }
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return result;
+    }
 }

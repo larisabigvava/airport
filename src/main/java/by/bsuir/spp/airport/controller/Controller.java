@@ -154,8 +154,17 @@ public class Controller extends HttpServlet{
                 }
                 break;
             }
-            case "delete_flight":{
-                DeleteFlightCommand command = new DeleteFlightCommand();
+            case "to_edit_flight":{
+                ToEditFlightCommand command = new ToEditFlightCommand();
+                try {
+                    req.getRequestDispatcher(command.execute(req)).forward(req,resp);
+                }catch (CommandException e){
+                    e.printStackTrace();
+                }
+                break;
+            }
+            case "to_edit_pilot":{
+                ToEditPilotCommand command = new ToEditPilotCommand();
                 try {
                     req.getRequestDispatcher(command.execute(req)).forward(req,resp);
                 }catch (CommandException e){

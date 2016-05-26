@@ -38,6 +38,7 @@
     </nav>
     <div class="row" id="content">
         <div class="col-xs-10 col-md-5 col-xs-offset-1 col-md-offset-3" id="user-data">
+            <c:if test="${empty pilot}">
             <form action="pilot.do" method="post">
                 <span>Введите данные о пилоте:</span>
                 <input class="field" type="text" placeholder="Имя" name="first_name" required/>
@@ -49,6 +50,22 @@
                 <input class="field" type="text" placeholder="Пароль" name="password" required/>
                 <button class="button" type="submit" name="btn" value="add_pilot">Сохранить</button>
             </form>
+            </c:if>
+            <c:if test="${not empty pilot}">
+            <form action="pilot.do" method="post">
+                <input type="hidden" name="id" value="${pilot.id}">
+                <span>Введите данные о пилоте:</span>
+                <input class="field" type="text" placeholder="Фамилия" name="last_name" value="${pilot.lastName}" required/>
+                <input class="field" type="text" placeholder="Имя" name="first_name" value="${pilot.firstName}" required/>
+                <input class="field" type="text" placeholder="Отчество" name="patronymic" value="${pilot.patronymic}" required/>
+                <input class="field" type="text" placeholder="Опыт работы" name="experience" value="${pilot.experience}" required/>
+                <input class="field" type="text" placeholder="ИИН" name="iin" value="${pilot.iin}" required/>
+                <input class="field" type="text" placeholder="Логин" name="login" value="${pilot.credential.login}" required/>
+                <input class="field" type="text" placeholder="Пароль" name="password" value="${pilot.credential.password}" required/>
+                <button class="button" type="submit" name="btn" value="edit_pilot">Сохранить</button>
+            </form>
+            </c:if>
+
         </div>
     </div>
     <footer id="footer" class="row">

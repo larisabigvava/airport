@@ -12,4 +12,5 @@ public interface PilotDao extends BaseDao<Pilot> {
     Pilot findByCredentials(Integer credentialId) throws DaoException;
     Integer deleteById(Integer id) throws DaoException;
     Collection<Pilot> findByAirline(Airline airline) throws DaoException;
+    Integer update(Pilot entity) throws DaoException;
 }

@@ -37,6 +37,7 @@
     </nav>
     <div class="row" id="content">
         <div class="col-xs-10 col-md-5 col-xs-offset-1 col-md-offset-3" id="user-data">
+            <c:if test="${empty flight}">
             <form action="flight.do" method="post">
                 <span>Введите данные о рейсе:</span>
                 <input class="field" type="text" placeholder="Номер рейса" name="flight_number" required/>
@@ -50,6 +51,30 @@
                 <input class="field" type="text" placeholder="Пилот" name="id_pilot" required/>
                 <button class="button" type="submit" name="btn" value="add_flight">Сохранить</button>
             </form>
+            </c:if>
+            <c:if test="${not empty flight}">
+            <form action="flight.do" method="post">
+            <span>Введите данные о рейсе:</span>
+                <input type="hidden" name="id" value="${flight.id}">
+                <input class="field" type="text" placeholder="Номер рейса" name="flight_number"
+                       value="${flight.flightNumber}" required/>
+                <input class="field" type="text" placeholder="Пункт назначения" name="destination"
+                       value="${flight.destination}" required/>
+                <input class="field" type="text" placeholder="Время отправления" name="departure_time"
+                       value="${flight.departureTime}" required/>
+                <input class="field" type="text" placeholder="Дата отправления" name="departure_date"
+                value="${flight.departureDate}" required/>
+                <input class="field" type="text" placeholder="Время прибытия" name="arrival_time"
+                value="${flight.arrivalTime}" required/>
+                <input class="field" type="text" placeholder="Дата прибытия" name="arrival_date"
+                value="${flight.arrivalDate}" required/>
+                <input class="field" type="text" placeholder="Номер самолета" name="id_plane"
+                value="${flight.plane.id}" required/>
+                <input class="field" type="text" placeholder="Пилот" name="id_pilot"
+                value="${flight.pilot.id}" required/>
+                <button class="button" type="submit" name="btn" value="edit_flight">Сохранить</button>
+            </form>
+            </c:if>
         </div>
     </div>
     <footer id="footer" class="row">

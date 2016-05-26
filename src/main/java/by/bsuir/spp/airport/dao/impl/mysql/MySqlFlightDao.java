@@ -31,6 +31,9 @@ public class MySqlFlightDao implements FlightDao {
     private static final String SELECT_ALL = "SELECT * FROM  flight";
     private static final String INSERT = "INSERT INTO flight(`id_plane`,`id_pilot`,`departure_time`,`departure_date`,`arrival_time`,`arrival_date`,`destination`,`flight_number`," +
             "`seats_count`,`id_airline`) VALUES(?,?,?,?,?,?,?,?,?,?)";
+    private static final String UPDATE = "UPDATE flight SET `id_plane`=?,`id_pilot`=?,`departure_time`=?," +
+            "`departure_date`=?,`arrival_time`=?,`arrival_date`=?,`destination`=?,`flight_number`=?,`id_airline`=? " +
+            "WHERE `id_flight`=?";
     private static final String SELECT_BY_ID = "SELECT * FROM  flight WHERE id_flight=?";
     private static final String SELECT_BY_DESTINATION = "SELECT * FROM  flight WHERE destination = ?";
     private static final String SELECT_BY_DEPARTURE_DATE = "SELECT * FROM  flight WHERE departure_date = ?";
@@ -179,5 +182,31 @@ public class MySqlFlightDao implements FlightDao {
         MySqlAirlineDao airlineDao = MySqlAirlineDao.getInstance();
         flight.setAirline(airlineDao.findById(resultSet.getInt(COLUMN_NAME_ID_AIRLINE)));
         return flight;
+    }
+
+    @Override
+    public Integer update(Flight entity) throws DaoException {
+        Integer id = null;
+        try (
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(UPDATE)
+                ){
+            statement.setInt(1, entity.getPlane().getId());
+            statement.setInt(2, entity.getPilot().getId());
+            statement.setTime(3, entity.getDepartureTime());
+            statement.setDate(4, entity.getDepartureDate());
+            statement.setTime(5, entity.getArrivalTime());
+            statement.setDate(6, entity.getArrivalDate());
+            statement.setString(7, entity.getDestination());
+            statement.setString(8, entity.getFlightNumber());
+            statement.setInt(9, entity.getAirline().getId());
+            statement.setInt(10, entity.getId());
+            if (statement.executeUpdate()==1){
+                id = entity.getId();
+            }
+        } catch (SQLException|NamingException e) {
+            throw new DaoException(e);
+        }
+        return id;
     }
 }

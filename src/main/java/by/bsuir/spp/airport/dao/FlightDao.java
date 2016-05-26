@@ -13,4 +13,5 @@ public interface FlightDao extends BaseDao<Flight> {
     Collection<Flight> findByAirline(Airline airline) throws DaoException;
     Collection<Flight> findByDestination(String destination) throws DaoException;
     Collection<Flight> findByDepartureDate(Date departureDate) throws DaoException;
+    Integer update(Flight flight) throws DaoException;
 }

@@ -20,6 +20,7 @@ public class MySqlCredentialsDao implements CredentialsDao{
     private static final String COLUMN_NAME_PASSWORD = "password";
     private static final String SELECT_BY_LOGIN_AND_PASSWORD = "SELECT id_user FROM user_credential WHERE `login`=? AND `password`=?";
     private static final String INSERT_CLIENT_TO_CREDENTIALS = "INSERT INTO user_credential(`login`,`password`) VALUES(?,?)";
+    private static final String UPDATE = "UPDATE user_credential SET `login`=?,`password`=? WHERE login=?";
     private static final String DELETE_BY_LOGIN = "DELETE FROM user_credential WHERE login=?";
 
     private static MySqlCredentialsDao instance = new MySqlCredentialsDao();
@@ -107,6 +108,24 @@ public class MySqlCredentialsDao implements CredentialsDao{
             }
         } catch (SQLException|NamingException ex){
             throw new DaoException(ex);
+        }
+        return id;
+    }
+
+    public Integer update(Credential credential) throws DaoException{
+        Integer id = null;
+        try(
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(UPDATE)
+                ){
+            statement.setString(1, credential.getLogin());
+            statement.setString(2, credential.getPassword());
+            statement.setString(3, credential.getLogin());
+            if (statement.executeUpdate() == 1){
+                id = findByCredentials(credential);
+            }
+        } catch (SQLException|NamingException e){
+            throw new DaoException(e);
         }
         return id;
     }
