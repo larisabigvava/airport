@@ -33,11 +33,30 @@
     </nav>
     <div class="row">
         <div class="col-sm-4 col-xs-10 col-sm-offset-4 col-xs-offset-1" id="content">
+            <c:if test="${empty sessionScope.role}">
             <form name="sign_in" action="sign_in.do" method="post">
                 <input class="field" type="text" placeholder="Логин" name="login" autofocus/>
                 <input class="field" type="text" placeholder="Пароль" name="password"/>
                 <button class="btn-info button" type="submit" name="btn" value="sign_in">Войти</button>
-            </form>
+            </form></c:if>
+            <c:if test="${not empty sessionScope.role}">
+                <c:if test="${sessionScope.role == 'pilot'}">
+                    <jsp:forward page="pilot.jsp"/>
+                    pilot
+                </c:if>
+                <c:if test="${sessionScope.role == 'administrator'}">
+                    <jsp:forward  page="admin.jsp"/>
+                    administrator
+                </c:if>
+                <c:if test="${sessionScope.role == 'airline'}">
+                    <jsp:forward page="airline.jsp"/>
+                    airline
+                </c:if>
+                <c:if test="${sessionScope.role == 'client'}">
+                    <c:redirect url="user.jsp"/>
+                    client
+                </c:if>
+            </c:if>
         </div>
     </div>
     <footer id="footer" class="row">
