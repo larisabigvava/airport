@@ -39,6 +39,7 @@
                 <input class="field" type="text" placeholder="Пароль" name="password"/>
                 <button class="btn-info button" type="submit" name="btn" value="sign_in">Войти</button>
             </form></c:if>
+            <%--УБРАТЬ--%>
             <c:if test="${not empty sessionScope.role}">
                 <c:if test="${sessionScope.role == 'pilot'}">
                     <jsp:forward page="pilot.jsp"/>

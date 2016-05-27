@@ -56,7 +56,7 @@ public class AirlineService extends BaseService {
         boolean result = false;
         PilotService service = PilotService.getInstance();
         try {
-            if (service.deleteById(id)!=null) {
+            if (service.deleteByAirline(id)!=null) {
                 if (dao.delete(id)) {
                     result = true;
                 }

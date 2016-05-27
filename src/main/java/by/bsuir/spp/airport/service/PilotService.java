@@ -31,10 +31,10 @@ public class PilotService extends BaseService {
         return pilot;
     }
 
-    public Integer deleteById(Integer id) throws ServiceException {
+    public Integer deleteByAirline(Integer id) throws ServiceException {
         Integer rows;
         try {
-            rows = dao.deleteById(id);
+            rows = dao.deleteByAirlineId(id);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

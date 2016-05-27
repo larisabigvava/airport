@@ -66,13 +66,14 @@ public class MySqlFlightDao implements FlightDao {
 
     @Override
     public Collection<Flight> findByDestination(String destination) throws DaoException {
-        ArrayList<Flight> flights = new ArrayList<>();
+        ArrayList<Flight> flights = null;
         try (
                 Connection connection = DatabaseUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(SELECT_BY_DESTINATION)
                 ){
             statement.setString(1, destination);
             ResultSet resultSet = statement.executeQuery();
+            flights = new ArrayList<>();
             while (resultSet.next()){
                 flights.add(fillFlight(resultSet));
             }
@@ -84,13 +85,14 @@ public class MySqlFlightDao implements FlightDao {
 
     @Override
     public Collection<Flight> findByDepartureDate(Date departureDate) throws DaoException {
-        ArrayList<Flight> flights = new ArrayList<>();
+        ArrayList<Flight> flights = null;
         try (
                 Connection connection = DatabaseUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(SELECT_BY_DEPARTURE_DATE)
         ){
             statement.setDate(1, departureDate);
             ResultSet resultSet = statement.executeQuery();
+            flights = new ArrayList<>();
             while (resultSet.next()) {
                 flights.add(fillFlight(resultSet));
             }
@@ -103,12 +105,13 @@ public class MySqlFlightDao implements FlightDao {
 
     @Override
     public Collection<Flight> findAll() throws DaoException {
-        ArrayList<Flight> flights = new ArrayList<>();
+        ArrayList<Flight> flights = null;
         try (
                 Connection connection = DatabaseUtil.getConnection();
                 Statement statement = connection.createStatement()
                 ){
             ResultSet resultSet = statement.executeQuery(SELECT_ALL);
+            flights = new ArrayList<>();
             while (resultSet.next()){
                 flights.add(fillFlight(resultSet));
             }
@@ -148,13 +151,14 @@ public class MySqlFlightDao implements FlightDao {
 
     @Override
     public Collection<Flight> findByAirline(Airline airline) throws DaoException {
-        ArrayList<Flight> flights = new ArrayList<>();
+        ArrayList<Flight> flights = null;
         try (
                 Connection connection = DatabaseUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(SELECT_BY_AIRLINE);
         ){
             statement.setInt(1,airline.getId());
             ResultSet resultSet = statement.executeQuery();
+            flights = new ArrayList<>();
             while (resultSet.next()){
                 flights.add(fillFlight(resultSet));
             }

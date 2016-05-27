@@ -29,6 +29,7 @@ public class MySqlPilotDao implements PilotDao {
     private static final String COLUMN_NAME_CREDENTIAL = "credentials";
     private static final String SELECT_BY_CREDENTIALS = "SELECT * FROM pilot WHERE `credentials`=?";
     private static final String DELETE_BY_AIRLINE = "DELETE FROM pilot WHERE id_airline=?";
+    private static final String DELETE_BY_ID = "DELETE FROM pilot WHERE id_pilot=?";
     private static final String SELECT_BY_AIRLINE = "SELECT * FROM  pilot WHERE id_airline=?";
     private static final String INSERT = "INSERT INTO pilot(last_name, first_name, patronymic, iin," +
             "experience, id_airline, credentials) VALUES(?,?,?, ?,?,?, ?)";
@@ -130,7 +131,7 @@ public class MySqlPilotDao implements PilotDao {
     }
 
     @Override
-    public Integer deleteById(Integer id) throws DaoException {
+    public Integer deleteByAirlineId(Integer id) throws DaoException {
         Integer rows;
         try (
                 Connection connection = DatabaseUtil.getConnection();
@@ -167,6 +168,21 @@ public class MySqlPilotDao implements PilotDao {
             throw new DaoException(ex);
         }
         return id;
+    }
+
+    @Override
+    public Integer deleteById(Integer id) throws DaoException {
+        Integer rows;
+        try (
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(DELETE_BY_ID)
+        ){
+            statement.setInt(1,id);
+            rows = statement.executeUpdate();
+        } catch (SQLException |NamingException e) {
+            throw new DaoException(e);
+        }
+        return rows;
     }
 
     private Pilot fillPilot(ResultSet resultSet) throws SQLException, DaoException{

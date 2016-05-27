@@ -87,6 +87,7 @@
             </div>
         </div>
     </div>
+    <br><br>
     <footer id="footer" class="row">
         &copy;2016, Бигвава Лариса, Виноградова Анна, Игнатович Виктория
     </footer>
