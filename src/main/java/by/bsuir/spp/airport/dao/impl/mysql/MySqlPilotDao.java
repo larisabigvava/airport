@@ -159,6 +159,8 @@ public class MySqlPilotDao implements PilotDao {
             statement.setInt(5, entity.getExperience());
             statement.setInt(6, entity.getAirline().getId());
             MySqlCredentialsDao credentialsDao = MySqlCredentialsDao.getInstance();
+            Pilot pilot = findById(entity.getId());
+            entity.getCredential().setId(pilot.getCredential().getId());
             statement.setInt(7,credentialsDao.update(entity.getCredential()));
             statement.setInt(8,entity.getId());
             if (statement.executeUpdate() == 1){
@@ -197,6 +199,7 @@ public class MySqlPilotDao implements PilotDao {
         pilot.setIin(resultSet.getString(COLUMN_NAME_IIN));
         MySqlCredentialsDao credentialsDao = MySqlCredentialsDao.getInstance();
         pilot.setCredential(credentialsDao.findById(resultSet.getInt(COLUMN_NAME_CREDENTIAL)));
+        pilot.getCredential().setId(resultSet.getInt(COLUMN_NAME_CREDENTIAL));
         return  pilot;
     }
 }

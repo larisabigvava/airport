@@ -39,7 +39,7 @@ public class AirlineServiceTest extends ServiceTest {
 
     @Test
     public void testDelete() throws Exception {
-        Integer id = 6;
+        Integer id = 9;
         AirlineService airlineService = AirlineService.getInstance();
         assertTrue(airlineService.delete(id));
     }

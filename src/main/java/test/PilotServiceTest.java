@@ -15,7 +15,7 @@ public class PilotServiceTest extends ServiceTest {
 
     @Test
     public void testSignIn() throws Exception {
-        Integer id = 6;
+        Integer id = 5;
         PilotService pilotService = PilotService.getInstance();
         assertNotNull(pilotService.signIn(id));
     }
@@ -45,8 +45,11 @@ public class PilotServiceTest extends ServiceTest {
         pilot.setPatronymic("newPilotovich");
         pilot.setExperience(1);
         pilot.setIin("1234567");
+        Airline airline = new Airline();
+        airline.setId(6);
+        pilot.setAirline(airline);
         Credential credential = new Credential();
-        credential.setLogin("newPilot");
+        credential.setLogin("newPilot1");
         credential.setPassword("newPass");
         pilot.setCredential(credential);
         assertTrue(pilotService.save(pilot));
@@ -56,7 +59,7 @@ public class PilotServiceTest extends ServiceTest {
     @Test
     public void testDelete() throws Exception {
         PilotService pilotService = PilotService.getInstance();
-        Integer id = 6;
+        Integer id = 10;
         assertTrue(pilotService.delete(id));
     }
 
@@ -78,6 +81,9 @@ public class PilotServiceTest extends ServiceTest {
         pilot.setPatronymic("newPilotovich");
         pilot.setExperience(1);
         pilot.setIin("1234567");
+        Airline airline = new Airline();
+        airline.setId(6);
+        pilot.setAirline(airline);
         Credential credential = new Credential();
         credential.setLogin("newPilot");
         credential.setPassword("newPass");
