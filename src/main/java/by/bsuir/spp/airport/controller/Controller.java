@@ -91,14 +91,13 @@ public class Controller extends HttpServlet{
                 }
                 break;
             }
-            case "reserve":{
+            case "reserve": {
                 ReserveTicketCommand command = new ReserveTicketCommand();
                 try {
-                    req.getRequestDispatcher(command.execute(req)).forward(req,resp);
-                }catch (CommandException e){
+                    req.getRequestDispatcher(command.execute(req)).forward(req, resp);
+                } catch (CommandException e) {
                     e.printStackTrace();
                 }
-                break;
             }
             case "add_flight":{
                 AddFlightCommand command = new AddFlightCommand();

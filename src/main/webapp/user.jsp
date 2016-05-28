@@ -53,7 +53,7 @@
                 <c:forEach items="${tickets}" var="elem">
                     <li>
                         <fieldset>
-                            <legend>Номер заказанного билета: ${elem.id}</legend>
+                            <legend>Номер билета: ${elem.id}</legend>
                         Номер рейса: ${elem.flight.flightNumber}<br>
                         Номер места: ${elem.seat.place}<br>
                         Пункт назначения: ${elem.flight.destination}<br>

@@ -5,11 +5,13 @@ import by.bsuir.spp.airport.command.CommandException;
 import by.bsuir.spp.airport.entity.Client;
 import by.bsuir.spp.airport.entity.Flight;
 import by.bsuir.spp.airport.entity.Ticket;
+import by.bsuir.spp.airport.service.FlightService;
 import by.bsuir.spp.airport.service.SeatService;
 import by.bsuir.spp.airport.service.ServiceException;
 import by.bsuir.spp.airport.service.TicketService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
 /**
  * Created by Seagull on 21.05.2016.
@@ -28,6 +30,12 @@ public class ReserveTicketCommand implements BaseCommand {
             SeatService seatService = SeatService.getInstance();
             ticket.setSeat(seatService.findFree(flight));
             service.reserveTicket(ticket);
+        } catch (ServiceException e) {
+            throw new CommandException(e);
+        }
+        FlightService service1 = FlightService.getInstance();
+        try {
+            request.setAttribute("flights",service1.findAll());
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
