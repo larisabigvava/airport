@@ -44,6 +44,13 @@
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="tab-1">
                     <div class="row flights-list">
+                        <form action="download_airline_pilots.do" method="post">
+                            <select name="format" class="field">
+                                <option value="PDF">PDF</option>
+                                <option value="XLSX">XLSX</option>
+                                <option value="CSV">CSV</option>
+                            </select>
+                            <button class="button" type="submit" name="btn" value="download_airline_pilots">Скачать список пилотов</button></form>
                         <a href="pilotinfo.jsp">Добавить пилота</a>
                         <ul>
                             <c:forEach items="${pilots}" var="elem">
@@ -64,6 +71,13 @@
                 </div>
                 <div class="tab-pane fade" id="tab-2">
                     <div class="row flights-list">
+                        <form action="download_airline_flights.do" method="post">
+                            <select name="format" class="field">
+                                <option value="PDF">PDF</option>
+                                <option value="XLSX">XLSX</option>
+                                <option value="CSV">CSV</option>
+                            </select>
+                            <button class="button" type="submit" name="btn" value="download_airline_flights">Скачать рейсы</button></form>
                         <a href="flightinfo.jsp">Добавить рейс</a>
                         <ul>
                             <c:forEach items="${flights}" var="elem">

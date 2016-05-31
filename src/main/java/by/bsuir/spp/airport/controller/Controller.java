@@ -171,6 +171,51 @@ public class Controller extends HttpServlet{
                 }
                 break;
             }
+            case "download_ticket":{
+                DownloadTicketCommand command = new DownloadTicketCommand();
+                try {
+                    req.getRequestDispatcher(command.execute(req)).forward(req,resp);
+                }catch (CommandException e){
+                    e.printStackTrace();
+                }
+                break;
+            }
+            case "download_airline_flights":{
+                DownloadAirlineFlightsCommand command = new DownloadAirlineFlightsCommand();
+                try {
+                    req.getRequestDispatcher(command.execute(req)).forward(req,resp);
+                }catch (CommandException e){
+                    e.printStackTrace();
+                }
+                break;
+            }
+            case "download_airline_pilots":{
+                DownloadAirlinePilotsCommand command = new DownloadAirlinePilotsCommand();
+                try {
+                    req.getRequestDispatcher(command.execute(req)).forward(req,resp);
+                }catch (CommandException e){
+                    e.printStackTrace();
+                }
+                break;
+            }
+            case "download_pilot_schedule":{
+                DownloadPilotScheduleCommand command = new DownloadPilotScheduleCommand();
+                try {
+                    req.getRequestDispatcher(command.execute(req)).forward(req,resp);
+                }catch (CommandException e){
+                    e.printStackTrace();
+                }
+                break;
+            }
+            case "download_airlines":{
+                DownloadAirlinesCommand command = new DownloadAirlinesCommand();
+                try {
+                    req.getRequestDispatcher(command.execute(req)).forward(req,resp);
+                }catch (CommandException e){
+                    e.printStackTrace();
+                }
+                break;
+            }
         }
     }
 }

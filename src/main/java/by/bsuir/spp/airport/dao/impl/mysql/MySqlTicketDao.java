@@ -27,6 +27,7 @@ public class MySqlTicketDao implements TicketDao {
     private static final String COLUMN_NAME_ID_CLIENT = "id_client";
     private static final String COLUMN_NAME_ID_SEAT = "id_seat";
     private static final String COLUMN_NAME_PRICE = "price";
+    private static final String SELECT_BY_ID = "SELECT * FROM ticket WHERE id_ticket=?";
 
 
     private static MySqlTicketDao instance = new MySqlTicketDao();
@@ -95,7 +96,19 @@ public class MySqlTicketDao implements TicketDao {
 
     @Override
     public Ticket findById(Integer id) throws DaoException {
-        return null;
+        Ticket ticket = null;
+        try (Connection connection = DatabaseUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SELECT_BY_ID);
+        ){
+            statement.setInt(1,id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                ticket = fillTicket(resultSet);
+            }
+        } catch (SQLException | NamingException e) {
+           throw new DaoException(e);
+        }
+        return ticket;
     }
 
     @Override

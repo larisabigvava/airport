@@ -4,6 +4,7 @@ import by.bsuir.spp.airport.dao.DaoException;
 import by.bsuir.spp.airport.dao.FlightDao;
 import by.bsuir.spp.airport.entity.Airline;
 import by.bsuir.spp.airport.entity.Flight;
+import by.bsuir.spp.airport.entity.Pilot;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -97,5 +98,15 @@ public class FlightService extends BaseService {
             throw new ServiceException(e);
         }
         return result;
+    }
+
+    public ArrayList<Flight> findByPilot(Pilot pilot) throws ServiceException{
+        ArrayList<Flight> flights = null;
+        try {
+            flights = new ArrayList<>(dao.findByPilot(pilot));
+        } catch (DaoException e){
+            throw new ServiceException(e);
+        }
+        return flights;
     }
 }

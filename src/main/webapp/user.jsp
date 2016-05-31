@@ -61,6 +61,14 @@
                         Время прибытия: ${elem.flight.arrivalTime}, дата прибытия: ${elem.flight.arrivalDate}<br>
                         Номер самолета: ${elem.flight.plane.privateNumber}<br>
                             </fieldset>
+                        <form action="download_ticket.do" method="post">
+                            <input hidden name="id" value="${elem.id}">
+                        <select name="format" class="field">
+                            <option value="PDF">PDF</option>
+                            <option value="XLSX">XLSX</option>
+                            <option value="CSV">CSV</option>
+                        </select>
+                        <button class="button" type="submit" name="btn" value="download_ticket">Скачать билет</button></form>
                     </li>
                 </c:forEach>
             </ul>

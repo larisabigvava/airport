@@ -5,6 +5,7 @@ import by.bsuir.spp.airport.dao.FlightDao;
 import by.bsuir.spp.airport.dao.util.DatabaseUtil;
 import by.bsuir.spp.airport.entity.Airline;
 import by.bsuir.spp.airport.entity.Flight;
+import by.bsuir.spp.airport.entity.Pilot;
 
 import javax.naming.NamingException;
 import java.sql.*;
@@ -29,6 +30,7 @@ public class MySqlFlightDao implements FlightDao {
     private static final String COLUMN_NAME_SEATS_COUNT = "seats_count";
     private static final String SELECT_BY_AIRLINE = "SELECT * FROM  flight WHERE id_airline=?";
     private static final String SELECT_ALL = "SELECT * FROM  flight";
+    private static final String SELECT_BY_PILOT = "SELECT * FROM flight WHERE id_pilot=?";
     private static final String INSERT = "INSERT INTO flight(`id_plane`,`id_pilot`,`departure_time`,`departure_date`,`arrival_time`,`arrival_date`,`destination`,`flight_number`," +
             "`seats_count`,`id_airline`) VALUES(?,?,?,?,?,?,?,?,?,?)";
     private static final String UPDATE = "UPDATE flight SET `id_plane`=?,`id_pilot`=?,`departure_time`=?," +
@@ -212,5 +214,24 @@ public class MySqlFlightDao implements FlightDao {
             throw new DaoException(e);
         }
         return id;
+    }
+
+    @Override
+    public Collection<Flight> findByPilot(Pilot pilot) throws DaoException {
+        ArrayList<Flight> flights = null;
+        try (
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SELECT_BY_PILOT);
+        ){
+            statement.setInt(1,pilot.getId());
+            ResultSet resultSet = statement.executeQuery();
+            flights = new ArrayList<>();
+            while (resultSet.next()){
+                flights.add(fillFlight(resultSet));
+            }
+        } catch (SQLException |NamingException ex) {
+            throw new DaoException(ex);
+        }
+        return flights;
     }
 }

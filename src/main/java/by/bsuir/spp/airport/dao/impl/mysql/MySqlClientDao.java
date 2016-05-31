@@ -1,9 +1,11 @@
 package by.bsuir.spp.airport.dao.impl.mysql;
 
+import by.bsuir.spp.airport.command.impl.ReserveTicketCommand;
 import by.bsuir.spp.airport.dao.DaoException;
 import by.bsuir.spp.airport.dao.ClientDao;
 import by.bsuir.spp.airport.dao.util.DatabaseUtil;
 import by.bsuir.spp.airport.entity.Client;
+import org.apache.poi.ss.formula.functions.Na;
 
 import javax.naming.NamingException;
 import java.sql.*;
@@ -15,6 +17,7 @@ import java.util.Collection;
  */
 public class MySqlClientDao implements ClientDao {
     private static final String SELECT_ALL = "SELECT * FROM client";
+    private static final String SELECT_BY_ID = SELECT_ALL + " WHERE id_client = ?";
     private static final String COLUMN_NAME_ID = "id_client";
     private static final String COLUMN_NAME_LAST_NAME = "last_name";
     private static final String COLUMN_NAME_FIRST_NAME = "first_name";
@@ -39,7 +42,20 @@ public class MySqlClientDao implements ClientDao {
 
     }
     public Client findById(Integer id) throws DaoException {
-        return null;
+        Client client = null;
+        try(
+                Connection connection = DatabaseUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SELECT_BY_ID)
+                ){
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                client = fillClient(resultSet);
+            }
+        } catch (SQLException | NamingException ex){
+            throw new DaoException(ex);
+        }
+        return client;
     }
 
     public Collection<Client> findAll() throws DaoException {

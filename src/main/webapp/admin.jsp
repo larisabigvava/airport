@@ -48,6 +48,13 @@
         </div>
         <div class="row airlines-list">
             <div class="col-xs-12 col-sm-5 col-sm-offset-3">
+                <form action="download_airlines.do" method="post">
+                    <select name="format" class="field">
+                        <option value="PDF">PDF</option>
+                        <option value="XLSX">XLSX</option>
+                        <option value="CSV">CSV</option>
+                    </select>
+                    <button class="button" type="submit" name="btn" value="download_airlines">Скачать список авиакомпаний</button></form>
                 <ul>
                     <c:forEach items="${airlines}" var="elem">
                         <li>

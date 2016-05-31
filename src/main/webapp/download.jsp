@@ -3,10 +3,10 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Кабинет пилота</title>
-    <link rel="stylesheet" href="jsp/css/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="jsp/css/commonStyle.css">
-    <link rel="stylesheet" href="jsp/css/userStyle.css">
+    <title>Путь к файлу</title>
+    <link rel="stylesheet" href="jsp/css/bootstrap/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="jsp/css/commonStyle.css" type="text/css">
+    <link rel="stylesheet" href="jsp/css/userStyle.css" type="text/css">
 </head>
 <body>
 <div class="container-fluid">
@@ -35,15 +35,13 @@
             </ul>
         </div>
     </nav>
-    <div id="pilot-content">
-        ФИО:  ${user.lastName} ${user.firstName} ${user.patronymic}
-        <form action="download_pilot_schedule.do" method="post">
-            <select name="format" class="field">
-                <option value="PDF">PDF</option>
-                <option value="XLSX">XLSX</option>
-                <option value="CSV">CSV</option>
-            </select>
-            <button class="button" type="submit" name="btn" value="download_pilot_schedule">Скачать расписание</button></form>
+    <div class="container-fluid" id="content">
+        <form name="sign_in" action="sign_in.do" method="post">
+            <button class="btn-info button" type="submit" name="btn" value="sign_in">Кабинет</button>
+        </form>
+        <div class="row">
+            <a href="C:${link}">C:${link}</a>
+        </div>
     </div>
     <footer id="footer" class="row">
         &copy;2016, Бигвава Лариса, Виноградова Анна, Игнатович Виктория

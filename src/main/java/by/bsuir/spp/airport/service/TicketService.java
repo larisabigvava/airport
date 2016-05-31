@@ -20,6 +20,16 @@ public class TicketService extends BaseService {
         return instance;
     }
 
+    public Ticket findById(Integer id) throws ServiceException{
+        Ticket ticket = null;
+        try {
+            ticket = dao.findById(id);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return ticket;
+    }
+
     public ArrayList<Ticket> findByClient(Integer id) throws ServiceException{
         ArrayList<Ticket> tickets = null;
         try {
