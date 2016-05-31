@@ -8,7 +8,7 @@ public class Pilot extends Entity {
     private String firstName;
     private String patronymic;
     private String iin;
-    private int experience;
+    private Integer experience;
     private Airline airline;
     public Credential getCredential() {
         return credential;
@@ -60,11 +60,11 @@ public class Pilot extends Entity {
         this.iin = iin;
     }
 
-    public int getExperience() {
+    public Integer getExperience() {
         return experience;
     }
 
-    public void setExperience(int experience) {
+    public void setExperience(Integer experience) {
         this.experience = experience;
     }
 }

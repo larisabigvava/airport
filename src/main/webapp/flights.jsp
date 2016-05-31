@@ -26,11 +26,15 @@
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <form action="menu.do">
-                    <li class="active"><a href="index.jsp">Главная</a>
+                    <c:if test="${empty sessionScope.role}">
+                        <li class="active"><a href="index.jsp">Авторизация</a>
+                        </li>
+                        <li><a href="registration.jsp">Регистрация</a></li>
+                    </c:if>
+                    <li><button name="btn" value="show_flights" type="submit">Рейсы</button></li>
+                    <c:if test="${not empty sessionScope.role}">
+                    <li><button class="btn" type="submit" name="btn" value="sign_in">Кабинет</button>
                     </li>
-                    <li><a href="registration.jsp">Регистрация</a></li>
-                    <li><button name="btn" value="show_flights" type="submit">Рейсы</button>
-                    <c:if test="${not empty sessionScope.role}"></li>
                     <li><button name="btn" value="log_off" type="submit">Выйти</button></c:if>
                 </form>
             </ul>
@@ -55,11 +59,6 @@
             </div>
         </div>
         <div class="row flights-list">
-            <c:if test="${not empty sessionScope.role}">
-                    <form name="sign_in" action="sign_in.do" method="post">
-                        <button class="btn-info button" type="submit" name="btn" value="sign_in">Кабинет</button>
-                    </form>
-            </c:if>
             <ul>
                 <c:forEach items="${flights}" var="elem">
                     <form action="reserve.do" name="reserve">

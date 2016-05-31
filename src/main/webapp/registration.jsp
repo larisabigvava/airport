@@ -25,11 +25,15 @@
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <form action="menu.do">
-                    <li class="active"><a href="index.jsp">Главная</a>
+                    <c:if test="${empty sessionScope.role}">
+                        <li class="active"><a href="index.jsp">Авторизация</a>
+                        </li>
+                        <li><a href="registration.jsp">Регистрация</a></li>
+                    </c:if>
+                    <li><button name="btn" value="show_flights" type="submit">Рейсы</button></li>
+                    <c:if test="${not empty sessionScope.role}">
+                    <li><button class="btn" type="submit" name="btn" value="sign_in">Кабинет</button>
                     </li>
-                    <li><a href="registration.jsp">Регистрация</a></li>
-                    <li><button name="btn" value="show_flights" type="submit">Рейсы</button>
-                        <c:if test="${not empty sessionScope.role}"></li>
                     <li><button name="btn" value="log_off" type="submit">Выйти</button></c:if>
                 </form>
             </ul>
@@ -37,6 +41,9 @@
     </nav>
     <div class="row">
         <div class="col-sm-6 col-xs-10 col-sm-offset-3 col-xs-offset-1" id="content">
+            <form name="sign_in" action="sign_in.do" method="post">
+                <button class="btn-info button" type="submit" name="btn" value="sign_in">Кабинет</button>
+            </form>
             <c:if test="${empty sessionScope.role}">
             Заполните поля для регистрации:
             <form name="registration_form" action="registration.do" method="post">
@@ -52,8 +59,8 @@
             </form>
             </c:if>
             <c:if test="${not empty sessionScope.role}">
-                <nav><br><br>Пожалуйста, разлогиньтесь, чтобы зарегистрироваться заново.
-                    <br><br><br><br></nav>
+                <nav><br>Пожалуйста, разлогиньтесь, чтобы зарегистрироваться заново.
+                    <br><br><br></nav>
             </c:if>
         </div>
     </div>

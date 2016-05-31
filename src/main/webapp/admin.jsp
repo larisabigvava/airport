@@ -24,11 +24,15 @@
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <form action="menu.do">
-                <li class="active"><a href="index.jsp">Главная</a>
-                </li>
-                <li><a href="registration.jsp">Регистрация</a></li>
+                <c:if test="${empty sessionScope.role}">
+                    <li class="active"><a href="index.jsp">Авторизация</a>
+                    </li>
+                    <li><a href="registration.jsp">Регистрация</a></li>
+                </c:if>
                 <li><button name="btn" value="show_flights" type="submit">Рейсы</button></li>
-                    <c:if test="${not empty sessionScope.role}">
+                <c:if test="${not empty sessionScope.role}">
+                <li><button class="btn" type="submit" name="btn" value="sign_in">Кабинет</button>
+                </li>
                 <li><button name="btn" value="log_off" type="submit">Выйти</button></c:if>
             </form>
         </ul>

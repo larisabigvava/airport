@@ -234,7 +234,7 @@ public class DocumentService extends BaseService {
             StringBuilder cellValue = new StringBuilder();
             switch (i) {
                 case 0:
-                    cell.setCellValue(ticket.getId());
+                    cell.setCellValue(ticket.getId().toString());
                     break;
                 case 1:
                     cell.setCellValue(ticket.getSeat().getPlace());
@@ -438,7 +438,8 @@ public class DocumentService extends BaseService {
             int rowCount = 0;
             createCellStyle(workbook);
             Sheet sheet = workbook.createSheet("Pilots");
-            String[] headers = {"ФИО",
+            String[] headers = {"ID",
+                    "ФИО",
                     "ИИН",
                     "Стаж"};
             Row row = sheet.createRow(rowCount++);
@@ -464,6 +465,9 @@ public class DocumentService extends BaseService {
                 StringBuilder cellValue = new StringBuilder();
                 switch (i) {
                     case 0:
+                        cell.setCellValue(pilot.getId().toString());
+                        break;
+                    case 1:
                         cellValue.append(pilot.getLastName())
                                 .append(" ")
                                 .append(pilot.getFirstName())
@@ -471,11 +475,11 @@ public class DocumentService extends BaseService {
                                 .append(pilot.getPatronymic());
                         cell.setCellValue(cellValue.toString());
                         break;
-                    case 1:
+                    case 2:
                         cell.setCellValue(pilot.getIin());
                         break;
-                    case 2:
-                        cell.setCellValue(pilot.getExperience());
+                    case 3:
+                        cell.setCellValue(pilot.getExperience().toString());
                         break;
                 }
                     sheet.autoSizeColumn(i);
