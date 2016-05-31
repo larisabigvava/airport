@@ -41,9 +41,6 @@
     </nav>
     <div class="row">
         <div class="col-sm-6 col-xs-10 col-sm-offset-3 col-xs-offset-1" id="content">
-            <form name="sign_in" action="sign_in.do" method="post">
-                <button class="btn-info button" type="submit" name="btn" value="sign_in">Кабинет</button>
-            </form>
             <c:if test="${empty sessionScope.role}">
             Заполните поля для регистрации:
             <form name="registration_form" action="registration.do" method="post">
